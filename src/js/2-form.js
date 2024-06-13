@@ -15,6 +15,7 @@ function saveToLS(key, value) {
   const jsonData = JSON.stringify(value);
   localStorage.setItem(key, jsonData);
 }
+
 function loadFromLS(key) {
   const json = localStorage.getItem(key);
   try {
@@ -35,16 +36,11 @@ form.addEventListener('submit', e => {
   e.preventDefault();
 
   const { email, message } = e.target.elements;
-  if (email.value === '' || message.value === '') {
+  if (email.value.trim() === '' || message.value.trim() === '') {
     alert('Fill please all fields');
+    return;
   }
-  console.log({ email: email.value, message: message.value });
-
-  // const formData = new FormData(form);
-  // const email = formData.get('email');
-  // const message = formData.get('message');
-  // const data = { email, message };
-  // console.log(data);
+  console.log({ email: email.value.trim(), message: message.value.trim() });
 
   form.reset();
 
